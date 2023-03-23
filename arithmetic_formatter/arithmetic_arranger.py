@@ -1,9 +1,15 @@
+CORRECT_OPERATORS = {'+', '-'}
+MAX_NUMBER_LENGTH = 4
+SPACE = ' '
+SPACES_SEPARATOR = SPACE * 4
+
+
 class AppError(Exception):
     pass
 
 
 def is_correct_operator(operator):
-    if operator in {'+', '-'}:
+    if operator in CORRECT_OPERATORS:
         return True
     return False
 
@@ -15,7 +21,8 @@ def is_correct_operands(num1, num2):
 
 
 def is_correct_number_length(num1, num2):
-    if len(num1) > 4 or len(num2) > 4:
+    if len(num1) > MAX_NUMBER_LENGTH or \
+            len(num2) > MAX_NUMBER_LENGTH:
         return False
     return True
 
@@ -27,7 +34,7 @@ def get_formatted_problem(num1, num2, operator, display_result):
     max_line_length = max_num_length + 2
 
     first_row = num1.rjust(max_line_length)
-    second_row = operator + (' ' * (max_line_length - length_num2 - 1)) + num2
+    second_row = operator + (SPACE * (max_line_length - length_num2 - 1)) + num2
     dashes = '-' * max_line_length
 
     if display_result:
@@ -35,7 +42,7 @@ def get_formatted_problem(num1, num2, operator, display_result):
             result = str(int(num1) + int(num2))
         else:
             result = str(int(num1) - int(num2))
-        result_line = ' ' * (max_line_length - len(result)) + result
+        result_line = SPACE * (max_line_length - len(result)) + result
         return [first_row, second_row, dashes, result_line]
 
     return [first_row, second_row, dashes]
@@ -65,10 +72,11 @@ def arranger(arithmetic_problems, display_result=False):
         line = get_formatted_problem(*problem)
         lines.append(line)
 
-    # result = ''
+    result = ''
     for i in range(len(lines[0])):
+        result_line = ''
         for line in lines:
-            # result += line[i] + '    '
-            print(line[i], end='    ')
-        # result += '\n'
-        print()
+            result_line += line[i] + SPACES_SEPARATOR
+        result += result_line.rstrip() + '\n'
+
+    return result.strip('\n')

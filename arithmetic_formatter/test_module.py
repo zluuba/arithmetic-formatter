@@ -1,4 +1,4 @@
-from arithmetic_arranger import arranger, AppError
+from arithmetic_formatter.arithmetic_arranger import arranger, AppError
 import pytest
 
 

@@ -1,3 +1,5 @@
+from math import ceil
+
 WEEK = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
 
 AM = 'AM'
@@ -15,24 +17,26 @@ def get_result_time(meridiem, start, duration):
     result_hour = start_hour + duration_hour
     result_minute = start_minute + duration_minute
 
-    added_hours = 0
     if result_minute >= MINUTES:
         added_hours = result_minute // MINUTES
         result_minute = result_minute % MINUTES
         result_hour += added_hours
+    total_hours = result_hour
+
+    if result_hour > 12:
+        result_hour = result_hour % 12
 
     added_days = 0
-    if result_hour >= FULL_DAY:
-        added_days = result_hour // FULL_DAY
-        result_hour = result_hour % FULL_DAY
+    while total_hours >= 12:
+        if meridiem == AM:
+            meridiem = PM
+        else:
+            meridiem = AM
+            added_days += 1
+        total_hours -= 12
 
     if result_hour == 0:
         result_hour = 12
-
-    if added_hours % 24 > 12:
-        meridiem = AM if meridiem == PM else PM
-    else:
-        meridiem = PM if meridiem == PM else AM
 
     return result_hour, result_minute, added_days, meridiem
 
@@ -71,6 +75,3 @@ def add_time(start_time, duration_time, starting_day=None):
         result += get_days_count(added_days)
 
     return result
-
-
-print(add_time("11:43 PM", "24:20", "tueSday"))

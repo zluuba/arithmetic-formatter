@@ -1,9 +1,4 @@
-from math import ceil
-
 WEEK = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
-
-AM = 'AM'
-PM = 'PM'
 
 MINUTES = 60
 FULL_DAY = 24
@@ -28,10 +23,10 @@ def get_result_time(meridiem, start, duration):
 
     added_days = 0
     while total_hours >= 12:
-        if meridiem == AM:
-            meridiem = PM
+        if meridiem == 'AM':
+            meridiem = 'PM'
         else:
-            meridiem = AM
+            meridiem = 'AM'
             added_days += 1
         total_hours -= 12
 
@@ -46,7 +41,7 @@ def get_weekday(starting_day, added_days):
     days = added_days + WEEK.index(starting_day)
     result_day = days % len(WEEK)
     result_day = WEEK[result_day]
-    result_day = result_day.title()
+    result_day = result_day.capitalize()
     return f", {result_day}"
 
 

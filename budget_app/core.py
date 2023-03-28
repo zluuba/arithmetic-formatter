@@ -1,11 +1,14 @@
 CHECK_LENGTH = 30
-FILL = "*"
+CHECK_TITLE_FILL = "*"
+SPEND_CHART_FILL = 'о'
 
 
 class Category:
     def __repr__(self):
         check = ""
-        title = self.category_name.center(CHECK_LENGTH, FILL) + "\n"
+        title = self.category_name.center(
+            CHECK_LENGTH, CHECK_TITLE_FILL
+        ) + "\n"
 
         for item in self.ledger:
             description = item["description"]
@@ -68,6 +71,8 @@ c.withdraw(10.15, 'groceries')
 c.withdraw(15.89, 'restaurant and more food')
 c.transfer(50.00, cc)
 
+cc.withdraw(45, 'cool shirt')
+
 ccc = Category('Auto')
 ccc.deposit(30, 'initial deposit')
 ccc.withdraw(10, 'seats')
@@ -78,5 +83,38 @@ ccc.withdraw(10, 'seats')
 
 
 def create_spend_chart(categories):
+    title = "Percentage spent by category"
+    spend_chart = [title]
+    spent_dict = {}
     for category in categories:
-        print(category.category_name)
+        name = category.category_name
+        spent = 0
+        for item in category.ledger:
+            if item["amount"] < 0:
+                spent += item["amount"]
+
+        budget = category.get_balance() + abs(spent)
+        spent_in_percentage = round((abs(spent) * 100) / budget, -1)
+        spent_dict[name] = int(spent_in_percentage)
+
+    for percent in range(100, -1, -10):
+        line = f"{str(percent).rjust(3)}| "
+        for key in spent_dict.keys():
+            line += SPEND_CHART_FILL if spent_dict[key] >= percent else " "
+            line += "  "
+        spend_chart.append(line)
+    borderline_length = 3 * len(spent_dict) + 1
+    borderline = "    " + "-" * borderline_length
+    spend_chart.append(borderline)
+
+    names = [name for name in spent_dict.keys()]
+    for i in range(max(map(len, names))):
+        line = "     "
+        for name in names:
+            line += (f"{name[i]}" if len(name) > i else " ") + "  "
+        spend_chart.append(line)
+
+    return '\n'.join(spend_chart)
+
+
+print(create_spend_chart([c, cc, ccc]))

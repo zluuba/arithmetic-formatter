@@ -1,4 +1,4 @@
-from arithmetic_arranger import arranger
+from arithmetic_formatter.core import arranger
 
 
 def main():

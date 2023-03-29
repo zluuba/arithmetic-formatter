@@ -32,4 +32,5 @@ def experiment(hat, expected_balls, num_balls_drawn, num_experiments):
             counter += 1
 
     probability = counter / num_experiments
-    return probability
+    probability_percentage = f"{int(probability * 100)}%"
+    return probability_percentage

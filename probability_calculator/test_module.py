@@ -24,7 +24,7 @@ class UnitTests(unittest.TestCase):
             hat=hat, expected_balls={"red": 2, "green": 1},
             num_balls_drawn=5, num_experiments=100
         )
-        expected = 0.45
+        expected = "45%"
         self.assertEqual(result, expected)
 
         hat = Hat(green=1, red=3, blue=10)
@@ -32,7 +32,7 @@ class UnitTests(unittest.TestCase):
             hat=hat, expected_balls={"red": 1, "blue": 1},
             num_balls_drawn=4, num_experiments=500
         )
-        expected = 0.664
+        expected = "66%"
         self.assertEqual(result, expected)
 
 

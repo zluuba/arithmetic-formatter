@@ -29,10 +29,10 @@ class UnitTests(unittest.TestCase):
 
         hat = Hat(green=1, red=3, blue=10)
         result = experiment(
-            hat=hat, expected_balls={"red": 1, "green": 1},
-            num_balls_drawn=5, num_experiments=100
+            hat=hat, expected_balls={"red": 1, "blue": 1},
+            num_balls_drawn=4, num_experiments=500
         )
-        expected = 88
+        expected = 0.664
         self.assertEqual(result, expected)
 
 

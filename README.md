@@ -5,7 +5,7 @@ Final projects of the "Scientific Computing with Python" course by [freeCodeCamp
 - [Time Calculator](https://github.com/zluuba/freeCodeCamp-projects/tree/main/time_calculator)
 - [Budget App](https://github.com/zluuba/freeCodeCamp-projects/tree/main/budget_app)
 - [Polygon Area Calculator](https://github.com/zluuba/freeCodeCamp-projects/tree/main/polygon_area_calculator)
-- [Probability Calculator](#)
+- [Probability Calculator](https://github.com/zluuba/freeCodeCamp-projects/tree/main/probability_calculator)
 
 
 ### Arithmetic Formatter
@@ -36,8 +36,7 @@ arithmetic_arranger(["32 + 8", "1 - 3801", "9999 + 9999", "523 - 49"], True)
 
 
 ### Time Calculator
-Takes in start time, duration time and starting day of the week (optional), add the duration time to the start time and return the result.
-Written in pure python (without any libraries).
+Takes in start time, duration time and starting day of the week (optional), adds the duration time to the start time and returns the result.
 Examples:
 
 ```ch

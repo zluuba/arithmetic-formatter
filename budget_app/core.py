@@ -1,6 +1,10 @@
 CHECK_LENGTH = 30
 CHECK_TITLE_FILL = "*"
-SPEND_CHART_FILL = 'о'
+SPEND_CHART_FILL = "о"
+SPEND_CHART_SEP = "|"
+SPEND_CHART_BORDERLINE = "-"
+SPACE = " "
+SPEND_CHART_TITLE = "Percentage spent by category"
 
 
 class Category:
@@ -63,31 +67,11 @@ class Category:
         return False
 
 
-c = Category('Food')
-cc = Category('Clothing')
-
-c.deposit(1000, 'initial deposit')
-c.withdraw(10.15, 'groceries')
-c.withdraw(15.89, 'restaurant and more food')
-c.transfer(50.00, cc)
-
-cc.withdraw(45, 'cool shirt')
-
-ccc = Category('Auto')
-ccc.deposit(30, 'initial deposit')
-ccc.withdraw(10, 'seats')
-
-# print(c)
-# print(cc)
-# print(ccc)
-
-
-def create_spend_chart(categories):
-    title = "Percentage spent by category"
-    spend_chart = [title]
-    spent_dict = {}
+def get_spent_dict_and_names(categories):
+    spent_dict, categories_names = {}, []
     for category in categories:
         name = category.category_name
+        categories_names.append(name)
         spent = 0
         for item in category.ledger:
             if item["amount"] < 0:
@@ -97,24 +81,28 @@ def create_spend_chart(categories):
         spent_in_percentage = round((abs(spent) * 100) / budget, -1)
         spent_dict[name] = int(spent_in_percentage)
 
+    return spent_dict, categories_names
+
+
+def create_spend_chart(categories):
+    spend_chart = [SPEND_CHART_TITLE]
+    spent_dict, categories_names = get_spent_dict_and_names(categories)
+
     for percent in range(100, -1, -10):
-        line = f"{str(percent).rjust(3)}| "
+        line = str(percent).rjust(3) + SPEND_CHART_SEP + SPACE
         for key in spent_dict.keys():
-            line += SPEND_CHART_FILL if spent_dict[key] >= percent else " "
-            line += "  "
+            line += SPEND_CHART_FILL if spent_dict[key] >= percent else SPACE
+            line += SPACE * 2
         spend_chart.append(line)
+
     borderline_length = 3 * len(spent_dict) + 1
-    borderline = "    " + "-" * borderline_length
+    borderline = SPACE * 4 + SPEND_CHART_BORDERLINE * borderline_length
     spend_chart.append(borderline)
 
-    names = [name for name in spent_dict.keys()]
-    for i in range(max(map(len, names))):
-        line = "     "
-        for name in names:
-            line += (f"{name[i]}" if len(name) > i else " ") + "  "
+    for i in range(max(map(len, categories_names))):
+        line = SPACE * 5
+        for name in categories_names:
+            line += (name[i] if len(name) > i else SPACE) + SPACE * 2
         spend_chart.append(line)
 
     return '\n'.join(spend_chart)
-
-
-print(create_spend_chart([c, cc, ccc]))

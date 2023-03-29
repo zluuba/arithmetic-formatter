@@ -58,14 +58,14 @@ add_time("6:30 PM", "205:12")
 ```
 
 ### Budget App
-Create Category class that have:
-- Deposit method - append an object (amount and description) to the ledger list;
-- Withdraw method - append an object (amount and description) to the ledger list but with negative amount;
-- Get balance method - return the current balance of the budget category;
-- Transfer method - add a withdrawal and add a deposit to the other budget category (if there are enough funds);
-- Check funds method - return False if the amount is greater than the balance of the budget category and returns True otherwise;
+The Budget App has a Category class that has:
+- Deposit method - adds an object (amount and description) to the ledger list;
+- Withdraw method - adds an object (amount and description) to the ledger list, but with a negative amount;
+- Get balance method - returns the current balance of the budget category;
+- Transfer method - adds a withdrawal and a deposit to the other budget category (if there are enough funds);
+- Check funds method - returns False if the amount is greater than the balance of the budget category and returns True otherwise;
 
-When the budget object is printed it display check of the following type:
+When the budget object is printed, it displays check of the following type:
 ```ch
 *************Food*************
 initial deposit        1000.00
@@ -75,8 +75,8 @@ Transfer to Clothing    -50.00
 Total: 923.96
 ```
 
-Besides the Category class, here if a function (outside of the class) calledcreate_spend_chart.
-The chart show the percentage spent in each category passed in to the function:
+Besides the Category class, there is a function (outside the class) called create_spend_chart.
+The chart shows the percentage of spending in each category passed to the function:
 ```ch
 Percentage spent by category
 100|          

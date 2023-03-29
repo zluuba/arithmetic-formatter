@@ -1,4 +1,5 @@
 from budget_app.core import Category, create_spend_chart
+import unittest
 
 
 FOOD_CHECK = """*************Food*************
@@ -46,37 +47,55 @@ SPEND_CHART = """Percentage spent by category
               g  """
 
 
-def get_prepared_data():
-    food = Category('Food')
-    auto = Category('Auto')
-    study = Category('Study')
-    clothing = Category('Clothing')
+class UnitTests(unittest.TestCase):
+    def setUp(self):
+        food = Category('Food')
+        auto = Category('Auto')
+        study = Category('Study')
+        clothing = Category('Clothing')
 
-    food.deposit(1000, 'initial deposit')
-    food.withdraw(10.15, 'groceries')
-    food.withdraw(15.89, 'restaurant and more food')
-    food.transfer(50.00, clothing)
+        food.deposit(1000, 'initial deposit')
+        food.withdraw(10.15, 'groceries')
+        food.withdraw(15.89, 'restaurant and more food')
+        food.transfer(50.00, clothing)
 
-    auto.deposit(30, 'initial deposit')
-    auto.withdraw(10, 'seats')
+        auto.deposit(30, 'initial deposit')
+        auto.withdraw(10, 'seats')
 
-    study.deposit(50, 'fellowship')
-    study.withdraw(42, 'office stuff')
-    study.withdraw(100, 'OOP course')
+        study.deposit(50, 'fellowship')
+        study.withdraw(42, 'office stuff')
+        study.withdraw(100, 'OOP course')
 
-    clothing.withdraw(45, 'cool shirt')
+        clothing.withdraw(45, 'cool shirt')
 
-    return food, auto, study, clothing
+        self.food = food
+        self.auto = auto
+        self.study = study
+        self.clothing = clothing
+
+    def test_category_class(self):
+        result = str(self.food)
+        expected = FOOD_CHECK
+        self.assertEqual(result, expected)
+
+        result = str(self.auto)
+        expected = AUTO_CHECK
+        self.assertEqual(result, expected)
+
+        result = str(self.study)
+        expected = STUDY_CHECK
+        self.assertEqual(result, expected)
+
+        result = str(self.clothing)
+        expected = CLOTHING_CHECK
+        self.assertEqual(result, expected)
+
+    def test_create_spend_chart(self):
+        categories = [self.food, self.auto, self.study, self.clothing]
+        result = create_spend_chart(categories)
+        expected = SPEND_CHART
+        self.assertEqual(result, expected)
 
 
-def test_category_class():
-    food, auto, study, clothing = get_prepared_data()
-    assert f"{food}" == FOOD_CHECK
-    assert f"{auto}" == AUTO_CHECK
-    assert f"{study}" == STUDY_CHECK
-    assert f"{clothing}" == CLOTHING_CHECK
-
-
-def test_create_spend_chart():
-    categories = get_prepared_data()
-    assert create_spend_chart(categories) == SPEND_CHART
+if __name__ == "__main__":
+    unittest.main()

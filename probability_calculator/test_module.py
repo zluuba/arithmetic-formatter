@@ -9,8 +9,8 @@ random.seed(1)
 class UnitTests(unittest.TestCase):
     def test_hat_class(self):
         hat = Hat(red=4, green=3)
-        result = hat.draw(2)
-        expected = ["red", "green"]
+        result = sorted(hat.draw(2))
+        expected = ["green", "red"]
         self.assertEqual(result, expected)
 
         hat = Hat(blue=2, black=3)

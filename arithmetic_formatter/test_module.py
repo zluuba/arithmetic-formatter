@@ -1,5 +1,5 @@
 from arithmetic_formatter.core import arranger, AppError
-import pytest
+import unittest
 
 
 CORRECT_INPUT = ["32 + 698", "3801 - 2", "45 + 43", "123 + 49"]
@@ -18,24 +18,44 @@ INCORRECT_OPERANDS = ["3^2 + 698", "3801 - 2", "4)5 + 43", "12=3 + 49"]
 INCORRECT_NUM_LENGTHS = ["32 + 69899", "3805551 - 2", "45 + 43", "123 + 49"]
 
 
-def test_arranger_correct_data():
-    assert arranger(CORRECT_INPUT) == CORRECT_OUTPUT
-    assert arranger(CORRECT_INPUT, display_result=True) == CORRECT_OUTPUT_WITH_RESULT
+class UnitTests(unittest.TestCase):
+    def test_arranger_correct_data(self):
+        result = arranger(CORRECT_INPUT)
+        expected = CORRECT_OUTPUT
+        self.assertEqual(result, expected)
+
+        result = arranger(CORRECT_INPUT, display_result=True)
+        expected = CORRECT_OUTPUT_WITH_RESULT
+        self.assertEqual(result, expected)
+
+    def test_arranger_incorrect_input_length(self):
+        with self.assertRaises(AppError) as incorrect_input_length:
+            arranger(INCORRECT_INPUT_LENGTH)
+
+        result = str(incorrect_input_length.exception)
+        self.assertEqual(result, "Too many problems.")
+
+    def test_arranger_incorrect_operators(self):
+        with self.assertRaises(AppError) as incorrect_operators:
+            arranger(INCORRECT_OPERATORS)
+
+        result = str(incorrect_operators.exception)
+        self.assertEqual(result, "Operator must be '+' or '-'.")
+
+    def test_arranger_incorrect_operands(self):
+        with self.assertRaises(AppError) as incorrect_operands:
+            arranger(INCORRECT_OPERANDS)
+
+        result = str(incorrect_operands.exception)
+        self.assertEqual(result, "Numbers must only contain digits.")
+
+    def test_arranger_incorrect_number_length(self):
+        with self.assertRaises(AppError) as incorrect_number_length:
+            arranger(INCORRECT_NUM_LENGTHS)
+
+        result = str(incorrect_number_length.exception)
+        self.assertEqual(result, "Numbers cannot be more than four digits.")
 
 
-def test_arranger_incorrect_data():
-    with pytest.raises(AppError) as incorrect_input_length:
-        arranger(INCORRECT_INPUT_LENGTH)
-        assert "Too many problems." in str(incorrect_input_length.value)
-
-    with pytest.raises(AppError) as incorrect_operators:
-        arranger(INCORRECT_OPERATORS)
-        assert "Operator must be '+' or '-'." in str(incorrect_operators.value)
-
-    with pytest.raises(AppError) as incorrect_operands:
-        arranger(INCORRECT_OPERANDS)
-        assert "Numbers must only contain digits." in str(incorrect_operands.value)
-
-    with pytest.raises(AppError) as incorrect_number_length:
-        arranger(INCORRECT_NUM_LENGTHS)
-        assert "Numbers cannot be more than four digits." in str(incorrect_number_length.value)
+if __name__ == "__main__":
+    unittest.main()

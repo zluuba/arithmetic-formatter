@@ -2,8 +2,8 @@
 
 Final projects of the "Scientific Computing with Python" course by [freeCodeCamp](https://www.freecodecamp.org/learn/scientific-computing-with-python/#scientific-computing-with-python-projects):
 - [Arithmetic Formatter](https://github.com/zluuba/free-code-camp-projects/tree/main/arithmetic_formatter)
-- [Time Calculator](https://github.com/zluuba/free-code-camp-projects/tree/main/time_calculato)
-- [Budget App](#)
+- [Time Calculator](https://github.com/zluuba/freeCodeCamp-projects/tree/main/time_calculator)
+- [Budget App](https://github.com/zluuba/freeCodeCamp-projects/tree/main/budget_app)
 - [Polygon Area Calculator](#)
 - [Probability Calculator](#)
 
@@ -58,6 +58,51 @@ add_time("6:30 PM", "205:12")
 ```
 
 ### Budget App
+Create Category class that have:
+- Deposit method - append an object (amount and description) to the ledger list;
+- Withdraw method - append an object (amount and description) to the ledger list but with negative amount;
+- Get balance method - return the current balance of the budget category;
+- Transfer method - add a withdrawal and add a deposit to the other budget category (if there are enough funds);
+- Check funds method - return False if the amount is greater than the balance of the budget category and returns True otherwise;
+
+When the budget object is printed it display check of the following type:
+```ch
+*************Food*************
+initial deposit        1000.00
+groceries               -10.15
+restaurant and more foo -15.89
+Transfer to Clothing    -50.00
+Total: 923.96
+```
+
+Besides the Category class, here if a function (outside of the class) calledcreate_spend_chart.
+The chart show the percentage spent in each category passed in to the function:
+```ch
+Percentage spent by category
+100|          
+ 90|          
+ 80|          
+ 70|          
+ 60| o        
+ 50| o        
+ 40| o        
+ 30| o        
+ 20| o  o     
+ 10| o  o  o  
+  0| o  o  o  
+    ----------
+     F  C  A  
+     o  l  u  
+     o  o  t  
+     d  t  o  
+        h     
+        i     
+        n     
+        g     
+```
+
+### Polygon Area Calculator
+
 Not ready yet
 
 

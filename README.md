@@ -4,7 +4,7 @@ Final projects of the "Scientific Computing with Python" course by [freeCodeCamp
 - [Arithmetic Formatter](https://github.com/zluuba/free-code-camp-projects/tree/main/arithmetic_formatter)
 - [Time Calculator](https://github.com/zluuba/freeCodeCamp-projects/tree/main/time_calculator)
 - [Budget App](https://github.com/zluuba/freeCodeCamp-projects/tree/main/budget_app)
-- [Polygon Area Calculator](#)
+- [Polygon Area Calculator](https://github.com/zluuba/freeCodeCamp-projects/tree/main/polygon_area_calculator)
 - [Probability Calculator](#)
 
 
@@ -103,7 +103,62 @@ Percentage spent by category
 
 ### Polygon Area Calculator
 
+The Polygon Area Calculator has a Rectangle class and a Square class (subclass of Rectangle) that has:
+- Width and height attributes;
+- Set width method - change width attribute;
+- Set height method - change height attribute;
+- Get area method - returns shape area;
+- Get perimeter method - returns shape perimeter;
+- Get diagonal method - returns shape diagonal;
+- Get picture method - returns a string that represents the shape using lines of "*";
+- Get amount inside method - returns the number of times the passed in shape could fit inside the shape (with no rotations);
+- Set side method - only in a Square class, set width and height;
+
+Usage example:
+```ch
+rect = shape_calculator.Rectangle(10, 5)
+print(rect.get_area())
+# 50
+
+rect.set_height(3)
+print(rect.get_perimeter())
+# 26
+
+print(rect)
+# Rectangle(width=10, height=3)
+
+print(rect.get_picture())
+# **********
+# **********
+# **********
+
+sq = shape_calculator.Square(9)
+print(sq.get_area())
+# 81
+
+sq.set_side(4)
+print(sq.get_diagonal())
+# 5.656854249492381
+
+print(sq)
+# Square(side=4)
+
+print(sq.get_picture())
+# ****
+# ****
+# ****
+# ****
+
+rect.set_height(8)
+rect.set_width(16)
+print(rect.get_amount_inside(sq))
+# 8
+```
+
+### Probability Calculator
+
 Not ready yet
+
 
 
 <br>

@@ -157,9 +157,25 @@ print(rect.get_amount_inside(sq))
 
 ### Probability Calculator
 
-Not ready yet
-
-
+The Probability Calculator is a program to determining the approximate probability of drawing certain balls randomly from a hat.
+The Hat class takes a variable number of arguments that specify the number of balls of each color that are in the hat.
+Drew method accepts an argument indicating the number of balls to draw from the hat, removes balls at random from contents and returns those balls as a list of strings:
+```ch
+hat = Hat(yellow=3, blue=2, green=6)
+print(hat.drew(2))
+# ["blue", "green"]
+```
+Experiment function (outside the Hat class) returns a probability of certain balls falling out.
+This is example of probability of two red and one green ball falling out of a hat that contains 6 black, 4 red and 3 green balls:
+```ch
+hat = Hat(black=6, red=4, green=3)
+probability = experiment(hat=hat,
+                  expected_balls={"red":2,"green":1},
+                  num_balls_drawn=5,
+                  num_experiments=2000)
+print(probability)
+# 0.45
+```
 
 <br>
 

@@ -4,7 +4,8 @@ class Rectangle:
         self.height = height
 
     def __repr__(self):
-        return f"{__class__.__name__}(width={self.width}, height={self.height})"
+        return f"{__class__.__name__}" \
+               f"(width={self.width}, height={self.height})"
 
     def set_width(self, width):
         self.width = width

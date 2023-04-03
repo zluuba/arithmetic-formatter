@@ -1,7 +1,7 @@
 from probability_calculator.core import Hat, experiment
-import probability_calculator.core
+import random
 
-probability_calculator.core.random.seed(1)
+random.seed(1)
 
 
 def main():

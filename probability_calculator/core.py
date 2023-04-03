@@ -28,7 +28,11 @@ def experiment(hat, expected_balls, num_balls_drawn, num_experiments):
         another_hat = copy.deepcopy(hat)
         drawn_balls = another_hat.draw(num_balls_drawn)
         drawn_balls = {i: drawn_balls.count(i) for i in set(drawn_balls)}
-        if all([drawn_balls.get(key, 0) >= value for key, value in expected_balls.items()]):
+        if all([
+            drawn_balls.get(key, 0) >= value
+            for key, value
+            in expected_balls.items()
+        ]):
             counter += 1
 
     probability = counter / num_experiments

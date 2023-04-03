@@ -1,9 +1,7 @@
 CHECK_LENGTH = 30
 CHECK_TITLE_FILL = "*"
 SPEND_CHART_FILL = "о"
-SPEND_CHART_SEP = "|"
 SPEND_CHART_BORDERLINE = "-"
-SPACE = " "
 SPEND_CHART_TITLE = "Percentage spent by category"
 
 
@@ -87,22 +85,23 @@ def get_spent_dict_and_names(categories):
 def create_spend_chart(categories):
     spend_chart = [SPEND_CHART_TITLE]
     spent_dict, categories_names = get_spent_dict_and_names(categories)
+    space = " "
 
     for percent in range(100, -1, -10):
-        line = str(percent).rjust(3) + SPEND_CHART_SEP + SPACE
+        line = str(percent).rjust(3) + "|" + space
         for key in spent_dict.keys():
-            line += SPEND_CHART_FILL if spent_dict[key] >= percent else SPACE
-            line += SPACE * 2
+            line += SPEND_CHART_FILL if spent_dict[key] >= percent else space
+            line += space * 2
         spend_chart.append(line)
 
     borderline_length = 3 * len(spent_dict) + 1
-    borderline = SPACE * 4 + SPEND_CHART_BORDERLINE * borderline_length
+    borderline = space * 4 + SPEND_CHART_BORDERLINE * borderline_length
     spend_chart.append(borderline)
 
     for i in range(max(map(len, categories_names))):
-        line = SPACE * 5
+        line = space * 5
         for name in categories_names:
-            line += (name[i] if len(name) > i else SPACE) + SPACE * 2
+            line += (name[i] if len(name) > i else space) + space * 2
         spend_chart.append(line)
 
     return '\n'.join(spend_chart)

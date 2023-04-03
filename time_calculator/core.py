@@ -1,7 +1,6 @@
 WEEK = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
 
 MINUTES = 60
-FULL_DAY = 24
 HALF_DAY = 12
 
 
@@ -18,20 +17,20 @@ def get_result_time(meridiem, start, duration):
         result_hour += added_hours
     total_hours = result_hour
 
-    if result_hour > 12:
-        result_hour = result_hour % 12
+    if result_hour > HALF_DAY:
+        result_hour = result_hour % HALF_DAY
 
     added_days = 0
-    while total_hours >= 12:
+    while total_hours >= HALF_DAY:
         if meridiem == 'AM':
             meridiem = 'PM'
         else:
             meridiem = 'AM'
             added_days += 1
-        total_hours -= 12
+        total_hours -= HALF_DAY
 
     if result_hour == 0:
-        result_hour = 12
+        result_hour = HALF_DAY
 
     return result_hour, result_minute, added_days, meridiem
 

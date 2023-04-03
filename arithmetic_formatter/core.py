@@ -28,13 +28,11 @@ def is_correct_number_length(num1, num2):
 
 
 def get_formatted_problem(num1, num2, operator, display_result):
-    length_num1 = len(num1)
-    length_num2 = len(num2)
-    max_num_length = max(length_num1, length_num2)
+    max_num_length = max(len(num1), len(num2))
     max_line_length = max_num_length + 2
 
     first_row = num1.rjust(max_line_length)
-    second_row = operator + (SPACE * (max_line_length - length_num2 - 1)) + num2
+    second_row = operator + (SPACE * (max_line_length - len(num2) - 1)) + num2
     dashes = '-' * max_line_length
 
     if display_result:

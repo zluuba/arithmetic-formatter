@@ -1,4 +1,4 @@
-## Scientific Computing with Python - projects
+# Scientific Computing with Python
 
 Final projects of the "Scientific Computing with Python" course by [freeCodeCamp](https://www.freecodecamp.org/learn/scientific-computing-with-python/#scientific-computing-with-python-projects):
 - [Arithmetic Formatter](https://github.com/zluuba/free-code-camp-projects/tree/main/arithmetic_formatter)
@@ -8,7 +8,7 @@ Final projects of the "Scientific Computing with Python" course by [freeCodeCamp
 - [Probability Calculator](https://github.com/zluuba/freeCodeCamp-projects/tree/main/probability_calculator)
 
 
-### Arithmetic Formatter
+## Arithmetic Formatter
 Receives a list of strings that are arithmetic problems and returns the problems arranged vertically and side-by-side. 
 The optional second argument displays the answers when set to True.
 Examples:
@@ -35,7 +35,7 @@ arithmetic_arranger(["32 + 8", "1 - 3801", "9999 + 9999", "523 - 49"], True)
 ```
 
 
-### Time Calculator
+## Time Calculator
 Takes in start time, duration time and starting day of the week (optional), adds the duration time to the start time and returns the result.
 Examples:
 
@@ -56,7 +56,7 @@ add_time("6:30 PM", "205:12")
 # Returns: 7:42 AM (9 days later)
 ```
 
-### Budget App
+## Budget App
 The Budget App has a Category class that has:
 - Deposit method - adds an object (amount and description) to the ledger list;
 - Withdraw method - adds an object (amount and description) to the ledger list, but with a negative amount;
@@ -100,7 +100,7 @@ Percentage spent by category
         g     
 ```
 
-### Polygon Area Calculator
+## Polygon Area Calculator
 
 The Polygon Area Calculator has a Rectangle class and a Square class (subclass of Rectangle) that has:
 - Width and height attributes;
@@ -154,7 +154,7 @@ print(rect.get_amount_inside(sq))
 # 8
 ```
 
-### Probability Calculator
+## Probability Calculator
 
 The Probability Calculator is a program to determining the approximate probability of drawing certain balls randomly from a hat.
 The Hat class takes a variable number of arguments that specify the number of balls of each color that are in the hat.
@@ -178,4 +178,4 @@ print(probability)
 
 <br>
 
-##### by [zluuba](https://www.freecodecamp.org/zluuba)
+**by [zluuba](https://www.freecodecamp.org/zluuba)**

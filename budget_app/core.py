@@ -1,3 +1,6 @@
+from typing import Union
+
+
 CHECK_LENGTH = 30
 CHECK_TITLE_FILL = "*"
 SPEND_CHART_FILL = "о"
@@ -6,7 +9,7 @@ SPEND_CHART_TITLE = "Percentage spent by category"
 
 
 class Category:
-    def __repr__(self):
+    def __repr__(self) -> str:
         check = ""
         title = self.category_name.center(
             CHECK_LENGTH, CHECK_TITLE_FILL
@@ -27,22 +30,28 @@ class Category:
         total = f"Total: {self.get_balance():.2f}"
         return title + check + total
 
-    def __init__(self, category_name):
+    def __init__(self, category_name: str) -> None:
         self.category_name = category_name
         self.ledger = []
 
-    def deposit(self, amount, description=""):
+    def deposit(self, amount: Union[int, float],
+                description: str = "") -> None:
+
         deposit = {"amount": amount, "description": description}
         self.ledger.append(deposit)
 
-    def withdraw(self, amount, description=""):
+    def withdraw(self, amount: Union[int, float],
+                 description: str = "") -> bool:
+
         if self.check_funds(amount):
             deposit = {"amount": -amount, "description": description}
             self.ledger.append(deposit)
             return True
         return False
 
-    def transfer(self, amount, category):
+    def transfer(self, amount: Union[int, float],
+                 category: 'Category') -> bool:
+
         withdraw_description = f"Transfer to {category.category_name}"
         deposit_description = f"Transfer from {self.category_name}"
 
@@ -52,20 +61,22 @@ class Category:
             return True
         return False
 
-    def get_balance(self):
+    def get_balance(self) -> Union[int, float]:
         balance = 0
         for item in self.ledger:
             balance += item["amount"]
         return balance
 
-    def check_funds(self, amount):
+    def check_funds(self, amount: Union[int, float]) -> bool:
         balance = self.get_balance()
         if balance > amount:
             return True
         return False
 
 
-def get_spent_dict_and_names(categories):
+def get_spent_dict_and_names(categories: list['Category']
+                             ) -> tuple[dict, list[str]]:
+
     spent_dict, categories_names = {}, []
     for category in categories:
         name = category.category_name
@@ -82,7 +93,7 @@ def get_spent_dict_and_names(categories):
     return spent_dict, categories_names
 
 
-def create_spend_chart(categories):
+def create_spend_chart(categories: list['Category']) -> str:
     spend_chart = [SPEND_CHART_TITLE]
     spent_dict, categories_names = get_spent_dict_and_names(categories)
     space = " "

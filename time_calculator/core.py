@@ -4,7 +4,9 @@ MINUTES = 60
 HALF_DAY = 12
 
 
-def get_result_time(meridiem, start, duration):
+def get_result_time(meridiem: str, start: tuple[int, ...],
+                    duration: tuple[int, ...]) -> tuple[int, ..., ..., str]:
+
     start_hour, start_minute = start
     duration_hour, duration_minute = duration
 
@@ -35,7 +37,7 @@ def get_result_time(meridiem, start, duration):
     return result_hour, result_minute, added_days, meridiem
 
 
-def get_weekday(starting_day, added_days):
+def get_weekday(starting_day: str, added_days: int) -> str:
     starting_day = starting_day.lower()
     days = added_days + WEEK.index(starting_day)
     result_day = days % len(WEEK)
@@ -44,13 +46,15 @@ def get_weekday(starting_day, added_days):
     return f", {result_day}"
 
 
-def get_days_count(added_days):
+def get_days_count(added_days: int) -> str:
     if added_days == 1:
         return " (next day)"
     return f" ({added_days} days later)"
 
 
-def add_time(start_time, duration_time, starting_day=None):
+def add_time(start_time: str, duration_time: str,
+             starting_day: str = None) -> str:
+
     time, meridiem = start_time.split()
     start_hour, start_minute = time.split(':')
     start = int(start_hour), int(start_minute)

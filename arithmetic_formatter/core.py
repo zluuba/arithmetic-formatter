@@ -8,26 +8,28 @@ class AppError(Exception):
     pass
 
 
-def is_correct_operator(operator):
+def is_correct_operator(operator: str) -> bool:
     if operator in CORRECT_OPERATORS:
         return True
     return False
 
 
-def is_correct_operands(num1, num2):
+def is_correct_operands(num1: str, num2: str) -> bool:
     if not num1.isdigit() or not num2.isdigit():
         return False
     return True
 
 
-def is_correct_number_length(num1, num2):
+def is_correct_number_length(num1: str, num2: str) -> bool:
     if len(num1) > MAX_NUMBER_LENGTH or \
             len(num2) > MAX_NUMBER_LENGTH:
         return False
     return True
 
 
-def get_formatted_problem(num1, num2, operator, display_result):
+def get_formatted_problem(num1: str, num2: str, operator: str,
+                          display_result: bool) -> list[str]:
+
     max_num_length = max(len(num1), len(num2))
     max_line_length = max_num_length + 2
 
@@ -46,7 +48,9 @@ def get_formatted_problem(num1, num2, operator, display_result):
     return [first_row, second_row, dashes]
 
 
-def arranger(arithmetic_problems, display_result=False):
+def arranger(arithmetic_problems: list[str],
+             display_result: bool = False) -> str:
+
     if len(arithmetic_problems) > 5:
         raise AppError("Too many problems.")
 
